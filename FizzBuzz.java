@@ -6,6 +6,9 @@ import java.util.stream.IntStream;
 
 public class FizzBuzz {
 
+    private static final String OUTPUT_SEPARATOR = ", ";
+    private static final int NUMBER_COUNT = 25;
+
     private static final Map<Integer, String> CONVERSIONS = new HashMap<>();
 
     static {
@@ -13,23 +16,21 @@ public class FizzBuzz {
         CONVERSIONS.put(5, "Buzz");
     }
 
-    private static final String OUTPUT_SEPARATOR = ", ";
-
     public static void main(String[] args) {
-        IntStream numbers = IntStream.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        IntStream numbers = IntStream.rangeClosed(1, NUMBER_COUNT);
 
         numbers.mapToObj(FizzBuzz::convert)
-                .map(s -> s + OUTPUT_SEPARATOR)
+                .map(output -> output + OUTPUT_SEPARATOR)
                 .forEach(System.out::print);
     }
 
     private static String convert(int number) {
         String converted = CONVERSIONS.entrySet().stream()
-                .filter(e -> number % e.getKey() == 0)
+                .filter(entry -> number % entry.getKey() == 0)
                 .map(Map.Entry::getValue)
                 .collect(Collectors.joining());
 
-        return converted.length() > 0 ? converted : String.valueOf(number);
+        return converted.isEmpty() ? String.valueOf(number) : converted;
     }
 
 }
