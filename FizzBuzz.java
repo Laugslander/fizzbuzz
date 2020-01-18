@@ -1,6 +1,6 @@
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -9,7 +9,7 @@ public class FizzBuzz {
     private static final int NUMBER_COUNT = 25;
     private static final String OUTPUT_SEPARATOR = ", ";
 
-    private static final Map<Integer, String> CONVERSIONS = new HashMap<>();
+    private static final Map<Integer, String> CONVERSIONS = new TreeMap<>();
 
     static {
         CONVERSIONS.put(3, "Fizz");
