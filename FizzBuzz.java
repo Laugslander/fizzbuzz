@@ -1,19 +1,22 @@
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.stream.IntStream;
 
 public class FizzBuzz {
 
-    private static final int RANGE_LENGTH = 30;
+    private static final int RANGE = 30;
     private static final String OUTPUT_SEPARATOR = ", ";
 
-    private static final Map<Integer, String> CONVERSIONS = Map.ofEntries(
-            Map.entry(3, "Fizz"),
-            Map.entry(5, "Buzz")
-    );
+    private static final Map<Integer, String> CONVERSIONS = new TreeMap<>();
+
+    static {
+        CONVERSIONS.put(3, "Fizz");
+        CONVERSIONS.put(5, "Buzz");
+    }
 
     public static void main(String[] args) {
-        IntStream.rangeClosed(1, RANGE_LENGTH)
+        IntStream.rangeClosed(1, RANGE)
                 .mapToObj(FizzBuzz::convert)
                 .forEach(FizzBuzz::print);
     }
@@ -27,7 +30,7 @@ public class FizzBuzz {
     }
 
     private static void print(String value) {
-        System.out.print(value + OUTPUT_SEPARATOR);
+        System.out.print(value.concat(OUTPUT_SEPARATOR));
     }
 
 }
